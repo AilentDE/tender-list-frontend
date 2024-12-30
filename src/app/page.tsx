@@ -1,18 +1,21 @@
+import { Suspense } from "react";
 import Image from "next/image";
 
 import SectionCard from "@/components/SectionCard";
 import UrlButton from "@/components/UrlButton";
+import CrawlerStatus from "@/components/forms/crawlerStatus";
 
 export default function Home() {
   return (
-    <div className="grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:p-20">
+    <div className="mt-10 grid min-h-screen grid-rows-[20px_1fr_20px] items-center justify-items-center gap-16 p-8 pb-20 font-[family-name:var(--font-geist-sans)] sm:mt-0 sm:p-20">
       <main>
         <SectionCard
-          title="Tender Crawler"
-          description="The interface for tender crawler powered by D.E."
+          title="Crawler Status"
+          description="Is the crawler running?"
         >
-          <p>Content here</p>
-          <button>Click me</button>
+          <Suspense fallback={<div>Loading...</div>}>
+            <CrawlerStatus />
+          </Suspense>
         </SectionCard>
       </main>
 
