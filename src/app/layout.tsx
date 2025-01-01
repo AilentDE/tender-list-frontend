@@ -4,7 +4,7 @@ import "./globals.css";
 
 import NextThemeProvider from "@/store/useTheme";
 import RootHeader from "@/components/RootHeader";
-
+import RootFooter from "@/components/RootFooter";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -33,6 +33,7 @@ export default function RootLayout({
         <NextThemeProvider>
           <RootHeader />
           {children}
+          <RootFooter />
         </NextThemeProvider>
       </body>
     </html>

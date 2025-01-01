@@ -13,7 +13,6 @@ const ThemeSwitcher = () => {
   }, []);
 
   if (!mounted) return null;
-  console.log("Current theme:", theme);
 
   return (
     <>
