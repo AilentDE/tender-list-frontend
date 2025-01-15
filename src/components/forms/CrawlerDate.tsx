@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import HoverButton from "@/components/ui/HoverButton";
 import DateItem from "@/components/ui/DateItem";
@@ -14,6 +14,11 @@ type CrawlerDate = {
 const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
   const [workdays, setWorkdays] = useState(date.workdays);
   const [holidays, setHolidays] = useState(date.holidays);
+
+  useEffect(() => {
+    setWorkdays(date.workdays);
+    setHolidays(date.holidays);
+  }, [date]);
 
   const addWorkingDay = () => {
     setWorkdays([...workdays, ""]);
