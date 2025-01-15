@@ -39,7 +39,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
           className="mb-2 min-w-24 rounded-md border px-1"
           ref={inputRef}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "Enter" || e.key === "numpadEnter") {
               e.preventDefault();
               const newTag = inputRef.current?.value;
               if (newTag && !keywords.includes(newTag)) {
@@ -70,7 +70,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
           className="mb-2 min-w-24 rounded-md border px-1"
           ref={inputOriRef}
           onKeyDown={(e) => {
-            if (e.key === "Enter") {
+            if (e.key === "Enter" || e.key === "numpadEnter") {
               e.preventDefault();
               const newTag = inputOriRef.current?.value;
               if (newTag && !oriKeywords.includes(newTag)) {
