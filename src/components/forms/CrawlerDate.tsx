@@ -21,9 +21,6 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
     setHolidays([...holidays, ""]);
   };
 
-  console.log(workdays);
-  console.log(holidays);
-
   return (
     <form className="flex flex-col space-y-8">
       <div className="flex flex-col space-y-2">
@@ -36,6 +33,9 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
             date={day}
             onChange={(e) => {
               const newWorkdays = [...workdays];
+              if (workdays.includes(e.target.value)) {
+                return;
+              }
               newWorkdays[index] = e.target.value;
               setWorkdays(newWorkdays);
             }}
@@ -60,6 +60,9 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
             date={day}
             onChange={(e) => {
               const newHolidays = [...holidays];
+              if (holidays.includes(e.target.value)) {
+                return;
+              }
               newHolidays[index] = e.target.value;
               setHolidays(newHolidays);
             }}
