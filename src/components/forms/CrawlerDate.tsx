@@ -4,6 +4,7 @@ import { useState } from "react";
 
 import HoverButton from "@/components/ui/HoverButton";
 import DateItem from "@/components/ui/DateItem";
+import { updateDate } from "@/actions/taskSetting";
 
 type CrawlerDate = {
   workdays: string[];
@@ -22,7 +23,7 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
   };
 
   return (
-    <form className="flex flex-col space-y-8">
+    <form action={updateDate} className="flex flex-col space-y-8">
       <div className="flex flex-col space-y-2">
         <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
           Work on weekend
@@ -31,6 +32,7 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
           <DateItem
             key={index}
             date={day}
+            dateType="workday"
             onChange={(e) => {
               const newWorkdays = [...workdays];
               if (workdays.includes(e.target.value)) {
@@ -58,6 +60,7 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
           <DateItem
             key={index}
             date={day}
+            dateType="holiday"
             onChange={(e) => {
               const newHolidays = [...holidays];
               if (holidays.includes(e.target.value)) {
@@ -75,6 +78,11 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
         ))}
         <HoverButton onClick={addHoliday} type="button" className="sm:w-2/5">
           Add
+        </HoverButton>
+      </div>
+      <div className="flex justify-end gap-2">
+        <HoverButton>
+          <span>Update</span>
         </HoverButton>
       </div>
     </form>

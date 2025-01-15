@@ -44,4 +44,31 @@ const updateWebhooks = async (formData: FormData) => {
   }
 };
 
-export { getSetting, updateWebhooks };
+const updateDate = async (formData: FormData) => {
+  const workdays = formData.getAll("workday");
+  const holidays = formData.getAll("holiday");
+
+  try {
+    const response = await fetch(`${BASE_URL}/task/setting/date`, {
+      method: "PUT",
+      body: JSON.stringify({
+        workdays: workdays.filter((day) => day !== ""),
+        holidays: holidays.filter((day) => day !== ""),
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      revalidatePath("/");
+    }
+    return data.success;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+};
+
+export { getSetting, updateWebhooks, updateDate };
