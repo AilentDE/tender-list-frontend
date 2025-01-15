@@ -28,7 +28,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
   const inputOriRef = useRef<HTMLInputElement>(null);
 
   return (
-    <form action={updateTags} className="flex flex-col space-y-8">
+    <form action={updateTags} className="flex flex-col space-y-4">
       <div className="flex flex-col space-y-2">
         <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
           Keywords
