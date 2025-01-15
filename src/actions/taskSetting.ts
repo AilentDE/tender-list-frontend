@@ -71,4 +71,31 @@ const updateDate = async (formData: FormData) => {
   }
 };
 
-export { getSetting, updateWebhooks, updateDate };
+const updateTags = async (formData: FormData) => {
+  const keywords = formData.getAll("keyword");
+  const orgKeywords = formData.getAll("organization");
+
+  try {
+    const response = await fetch(`${BASE_URL}/task/setting/tag`, {
+      method: "PUT",
+      body: JSON.stringify({
+        tags: keywords,
+        org_tags: orgKeywords,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      revalidatePath("/");
+    }
+    return data.success;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+};
+
+export { getSetting, updateWebhooks, updateDate, updateTags };

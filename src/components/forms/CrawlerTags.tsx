@@ -1,7 +1,10 @@
 "use client";
 
 import { useState, useRef } from "react";
+
+import HoverButton from "@/components/ui/HoverButton";
 import TagItem from "@/components/ui/TagItem";
+import { updateTags } from "@/actions/taskSetting";
 
 type CrawlerTags = {
   tags: string[];
@@ -25,7 +28,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
   const inputOriRef = useRef<HTMLInputElement>(null);
 
   return (
-    <form className="flex flex-col space-y-8">
+    <form action={updateTags} className="flex flex-col space-y-8">
       <div className="flex flex-col space-y-2">
         <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
           Keywords
@@ -51,6 +54,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
             <TagItem
               key={index}
               title={tag}
+              tagType="keyword"
               onDelete={() => deleteKeyword(tag)}
             />
           ))}
@@ -81,10 +85,16 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
             <TagItem
               key={index}
               title={tag}
+              tagType="organization"
               onDelete={() => deleteOriKeyword(tag)}
             />
           ))}
         </div>
+      </div>
+      <div className="flex justify-end gap-2">
+        <HoverButton>
+          <span>Update</span>
+        </HoverButton>
       </div>
     </form>
   );
