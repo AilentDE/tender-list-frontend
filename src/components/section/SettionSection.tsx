@@ -21,7 +21,7 @@ const SettingSection = async () => {
         <CrawlerDate date={date} />
       </SectionCard>
       <SectionCard title="Tags" description="setting tender tags for search">
-        <CrawlerTags tags={tag} />
+        <CrawlerTags tagSet={tag} />
       </SectionCard>
     </>
   );
