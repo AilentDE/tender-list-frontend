@@ -1,4 +1,4 @@
-// import { revalidatePath } from "next/cache";
+import { revalidatePath } from "next/cache";
 
 const BASE_URL = process.env.API_URL;
 
@@ -16,4 +16,32 @@ const getSetting = async () => {
   }
 };
 
-export { getSetting };
+const updateWebhooks = async (formData: FormData) => {
+  "use server";
+  const primary = formData.get("primary");
+  const debug = formData.get("debug");
+
+  try {
+    const response = await fetch(`${BASE_URL}/task/setting/webhook`, {
+      method: "PUT",
+      body: JSON.stringify({
+        primary,
+        debug,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const data = await response.json();
+    if (data.success) {
+      revalidatePath("/");
+    }
+    return data.success;
+  } catch (error) {
+    console.error(error);
+    return undefined;
+  }
+};
+
+export { getSetting, updateWebhooks };
