@@ -1,3 +1,4 @@
+"use server";
 import { revalidatePath } from "next/cache";
 
 const BASE_URL = process.env.API_URL;
@@ -17,7 +18,6 @@ const getSetting = async () => {
 };
 
 const updateWebhooks = async (formData: FormData) => {
-  "use server";
   const primary = formData.get("primary");
   const debug = formData.get("debug");
 

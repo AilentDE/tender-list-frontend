@@ -1,3 +1,4 @@
+"use server";
 import { revalidatePath } from "next/cache";
 
 const BASE_URL = process.env.API_URL;
@@ -17,7 +18,6 @@ const getCrawlerStatus = async (): Promise<boolean | undefined> => {
 };
 
 const startCrawler = async () => {
-  "use server";
   try {
     const response = await fetch(`${BASE_URL}/scheduler/start`, {
       method: "POST",
@@ -37,7 +37,6 @@ const startCrawler = async () => {
 };
 
 const stopCrawler = async () => {
-  "use server";
   try {
     const response = await fetch(`${BASE_URL}/scheduler/pause`, {
       method: "POST",
