@@ -1,0 +1,12 @@
+services:
+  tender_bot_frontend:
+    build:
+      context: .
+      args:
+        - API_URL=http://host.docker.internal:8000
+    image: tender_bot_frontend
+    ports:
+      - 3000:3000
+    restart: unless-stopped
+    environment:
+      - API_URL=http://host.docker.internal:8000
