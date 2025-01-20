@@ -2,7 +2,8 @@
 
 import { useState, useRef } from "react";
 
-import HoverButton from "@/components/ui/HoverButton";
+import FormUpdateBtn from "@/components/ui/FormUpdateBtn";
+import TitleScope from "@/components/section/TitleScope";
 import TagItem from "@/components/ui/TagItem";
 import { updateTags } from "@/actions/taskSetting";
 
@@ -29,10 +30,7 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
 
   return (
     <form action={updateTags} className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-2">
-        <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
-          Keywords
-        </label>
+      <TitleScope title="Keywords">
         <input
           type="text"
           placeholder="keyword"
@@ -59,11 +57,8 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
             />
           ))}
         </div>
-      </div>
-      <div className="flex flex-col space-y-2">
-        <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
-          Organization
-        </label>
+      </TitleScope>
+      <TitleScope title="Organization">
         <input
           type="text"
           placeholder="organization"
@@ -90,11 +85,9 @@ const CrawlerTags = ({ tagSet }: { tagSet: CrawlerTags }) => {
             />
           ))}
         </div>
-      </div>
+      </TitleScope>
       <div className="flex justify-end gap-2">
-        <HoverButton>
-          <span>Update</span>
-        </HoverButton>
+        <FormUpdateBtn />
       </div>
     </form>
   );

@@ -1,5 +1,5 @@
 import { updateWebhooks } from "@/actions/taskSetting";
-import HoverButton from "@/components/ui/HoverButton";
+import FormUpdateBtn from "@/components/ui/FormUpdateBtn";
 
 type Webhook = {
   primary: string;
@@ -32,9 +32,7 @@ const CrawlerWebhook = ({ webhook }: { webhook: Webhook }) => {
         </li>
       </ul>
       <div className="flex justify-end gap-2">
-        <HoverButton>
-          <span>Update</span>
-        </HoverButton>
+        <FormUpdateBtn />
       </div>
     </form>
   );

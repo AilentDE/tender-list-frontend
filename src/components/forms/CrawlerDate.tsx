@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 
 import HoverButton from "@/components/ui/HoverButton";
+import FormUpdateBtn from "@/components/ui/FormUpdateBtn";
+import TitleScope from "@/components/section/TitleScope";
 import DateItem from "@/components/ui/DateItem";
 import { updateDate } from "@/actions/taskSetting";
 
@@ -29,10 +31,7 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
 
   return (
     <form action={updateDate} className="flex flex-col space-y-4">
-      <div className="flex flex-col space-y-2">
-        <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
-          Work on weekend
-        </label>
+      <TitleScope title="Work on weekend">
         {workdays.map((day, index) => (
           <DateItem
             key={index}
@@ -56,11 +55,8 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
         <HoverButton onClick={addWorkingDay} type="button" className="sm:w-2/5">
           Add
         </HoverButton>
-      </div>
-      <div className="flex flex-col space-y-2">
-        <label className="font-xl rounded-md bg-gray-200 text-center font-semibold dark:bg-gray-800">
-          Pass on workday
-        </label>
+      </TitleScope>
+      <TitleScope title="Pass on workday">
         {holidays.map((day, index) => (
           <DateItem
             key={index}
@@ -84,11 +80,9 @@ const CrawlerDate = ({ date }: { date: CrawlerDate }) => {
         <HoverButton onClick={addHoliday} type="button" className="sm:w-2/5">
           Add
         </HoverButton>
-      </div>
+      </TitleScope>
       <div className="flex justify-end gap-2">
-        <HoverButton>
-          <span>Update</span>
-        </HoverButton>
+        <FormUpdateBtn />
       </div>
     </form>
   );
