@@ -1,36 +1,51 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Tender List
 
-## Getting Started
+## Description
 
-First, run the development server:
+這個專案來自於好友的需求，可以定時檢查最新的[政府標案](https://web.pcc.gov.tw/prkms/tender/common/basic/indexTenderBasic)並發送通知至Teams頻道。
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+專案核心是APScheduler的進階運用，雖然技術層面並不複雜，但藉此機會重新架構了[舊的專案](https://github.com/AilentDE/Moaideas/tree/master/tender_project)的結構。
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+資料庫採用SQLite3，不需要額外啟動資料庫伺服器。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+並且以Next.js開發了前端介面（雖然以這專案而言有點過重了）讓使用者能夠靈活調整設定，並透過Server Action實現端點保護機制。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+有興趣歡迎參考使用，也可以依需求自行加入Proxy來提升爬蟲作業的穩定性。
 
-## Learn More
+## Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+<img src="public/2025-04-09T215349.png" width="300">
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+<img src="public/2025-04-09T215441.png" width="300">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Usage
 
-## Deploy on Vercel
+1.  準備 `.env` 檔案
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    ```bash
+    # 後端端點
+    API_URL=
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2.  啟動服務
+
+    ```bash
+    # 前端
+    npm install
+    npm run dev
+    ```
+
+3.  部屬容器，我準備了兩種docker-compose文件依照實際需求自行使用
+    (我是以windows開發並部署到ubuntu server)
+
+    1. Windows Docker Desktop
+
+       ```bash
+       docker-compose up -d
+       ```
+
+    2. Linux
+
+       ```bash
+       docker-compose -f docker-compose-linux.yml up -d
+       ```
